@@ -1,3 +1,4 @@
+from controller import Controller
 import re
 from threading import Thread
 from bot import Bot
@@ -5,12 +6,15 @@ from bot import Bot
 from view import View
 v = View()
 
+c = Controller()
+
 b = Bot()
 me = b.me
 t1 = Thread(target=b.run)
 
 FIND_FRIEND = re.compile("^ff")
 SEND_TEXT = re.compile("^st")
+LIST_THREADS = re.compile("^ls")
 
 
 def capture_input():
@@ -28,6 +32,9 @@ def capture_input():
             else:
                 b.send_text(msg)
                 v.update_history(messages)
+
+        elif LIST_THREADS.search(cmd):
+            c.list_threads()
 
 
 t2 = Thread(target=capture_input)

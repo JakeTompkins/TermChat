@@ -20,6 +20,8 @@ class Repo:
         if me:
             msg["User"] = me
         user_thread.add(msg)
+        if not user_thread == self.current_thread:
+            user_thread.mark_new()
 
     def switch_thread(self, user):
         threads = [thread for thread in self.threads if thread.id ==
@@ -29,6 +31,7 @@ class Repo:
         else:
             self.current_thread = Thread(user)
             self.threads.append(self.current_thread)
+        self.current_thread.mark_read()
         return self.current_thread.dump()
 
     def dump_current_thread(self):
@@ -36,3 +39,6 @@ class Repo:
             return self.current_thread.dump()
         else:
             return []
+
+    def all_threads(self):
+        return self.threads

@@ -21,3 +21,7 @@ class Controller:
 
     def select_user(self, users):
         return self.v.select_user(users)
+
+    def list_threads(self):
+        threads = self.r.all_threads()
+        self.v.list_threads(threads)

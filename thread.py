@@ -6,7 +6,7 @@ class Thread:
         self.user = user
         self.id = user["AttrStatus"]
         self.messages = []
-        print(f"New Thread - User: {user}")
+        self.new = True
 
     def add(self, msg):
         msg = Message(msg)
@@ -14,3 +14,9 @@ class Thread:
 
     def dump(self):
         return self.messages
+
+    def mark_read(self):
+        self.new = False
+
+    def mark_new(self):
+        self.new = True
