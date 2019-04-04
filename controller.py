@@ -18,3 +18,6 @@ class Controller:
 
     def switch_thread(self, user):
         return self.r.switch_thread(user)
+
+    def select_user(self, users):
+        return self.v.select_user(users)

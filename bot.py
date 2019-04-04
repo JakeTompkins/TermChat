@@ -1,5 +1,4 @@
 from controller import Controller
-from view import View
 from repo import Repo
 import itchat as i
 from itchat.content import *
@@ -26,11 +25,7 @@ class Bot:
     def find_friend(self, name):
         possibilities = i.search_friends(name=name)
         if len(possibilities) > 0:
-            ind = 1
-            for p in possibilities:
-                print(f"{ind}: {p['NickName']}")
-                ind += 1
-            index = int(input("Enter an index: ")) - 1
+            index = self.c.select_user(possibilities)
             user = possibilities[index]
         else:
             new_query = input("No friends found, enter new name: ")
