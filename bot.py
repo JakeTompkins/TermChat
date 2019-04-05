@@ -5,7 +5,7 @@ from itchat.content import *
 
 class Bot:
     def __init__(self):
-        i.auto_login()
+        i.auto_login(hotReload=True, enableCmdQR=2)
         self.c = Controller()
         self.me = i.search_friends()
 
