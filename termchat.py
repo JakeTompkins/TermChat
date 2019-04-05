@@ -1,12 +1,9 @@
-from controller import Controller
 import re
 from threading import Thread
 from bot import Bot
 
 from view import View
 v = View()
-
-c = Controller()
 
 b = Bot()
 me = b.me
@@ -34,7 +31,7 @@ def capture_input():
                 v.update_history(messages)
 
         elif LIST_THREADS.search(cmd):
-            c.list_threads()
+            b.list_threads()
 
 
 t2 = Thread(target=capture_input)
