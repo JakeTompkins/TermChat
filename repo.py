@@ -3,7 +3,6 @@ from thread import Thread
 
 class Repo:
     def __init__(self):
-        self.unread = []
         self.threads = []
         self.current_thread = None
 
@@ -35,10 +34,7 @@ class Repo:
         return self.current_thread.dump()
 
     def dump_current_thread(self):
-        if self.current_thread:
-            return self.current_thread.dump()
-        else:
-            return []
+        return self.current_thread.dump() if self.current_thread else []
 
     def all_threads(self):
         return self.threads

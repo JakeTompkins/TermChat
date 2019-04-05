@@ -22,4 +22,5 @@ class View:
 
     def list_threads(self, threads):
         for thread in threads:
-            print(f"{thread.user['NickName']}: {[X] if thread.new else []}")
+            print(
+                f"{thread.user['NickName']}: {'[X]' if thread.new else '[]'}")
