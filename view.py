@@ -19,3 +19,8 @@ class View:
             print(f"{ind}: {u['NickName']}")
             ind += 1
         return int(input("Enter an index: ")) - 1
+
+    def list_threads(self, threads):
+        for thread in threads:
+            print(
+                f"{thread.user['NickName']}: {'[X]' if thread.new else '[]'}")

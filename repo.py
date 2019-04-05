@@ -3,7 +3,6 @@ from thread import Thread
 
 class Repo:
     def __init__(self):
-        self.unread = []
         self.threads = []
         self.current_thread = None
 
@@ -20,6 +19,8 @@ class Repo:
         if me:
             msg["User"] = me
         user_thread.add(msg)
+        if not user_thread == self.current_thread:
+            user_thread.mark_new()
 
     def switch_thread(self, user):
         threads = [thread for thread in self.threads if thread.id ==
@@ -29,10 +30,11 @@ class Repo:
         else:
             self.current_thread = Thread(user)
             self.threads.append(self.current_thread)
+        self.current_thread.mark_read()
         return self.current_thread.dump()
 
     def dump_current_thread(self):
-        if self.current_thread:
-            return self.current_thread.dump()
-        else:
-            return []
+        return self.current_thread.dump() if self.current_thread else []
+
+    def all_threads(self):
+        return self.threads

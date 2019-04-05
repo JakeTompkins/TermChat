@@ -11,6 +11,7 @@ t1 = Thread(target=b.run)
 
 FIND_FRIEND = re.compile("^ff")
 SEND_TEXT = re.compile("^st")
+LIST_THREADS = re.compile("^ls")
 
 
 def capture_input():
@@ -28,6 +29,9 @@ def capture_input():
             else:
                 b.send_text(msg)
                 v.update_history(messages)
+
+        elif LIST_THREADS.search(cmd):
+            b.list_threads()
 
 
 t2 = Thread(target=capture_input)

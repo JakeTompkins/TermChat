@@ -1,5 +1,4 @@
 from controller import Controller
-from repo import Repo
 import itchat as i
 from itchat.content import *
 
@@ -7,7 +6,6 @@ from itchat.content import *
 class Bot:
     def __init__(self):
         i.auto_login()
-        self.r = Repo()
         self.c = Controller()
         self.me = i.search_friends()
 
@@ -34,6 +32,9 @@ class Bot:
             else:
                 return self.find_friend(new_query)
         return self.chat_with(user)
+
+    def list_threads(self):
+        return self.c.list_threads()
 
     def run(self):
         @i.msg_register(TEXT)
